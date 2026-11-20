@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "verifin"
+version = "0.1.0"
+description = "Verifiable finance agents: every number in an LLM answer is traced to data, or redacted."
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+dependencies = ["numpy>=1.22"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "ruff>=0.4"]
+
+[project.scripts]
+verifin = "verifin.cli:main"
+
+[tool.setuptools]
+packages = ["verifin"]
+
+[tool.setuptools.package-data]
+verifin = ["skills/*.md"]
+
+[tool.ruff]
+line-length = 140
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B"]
+ignore = ["E701", "E702", "E731", "B023"]

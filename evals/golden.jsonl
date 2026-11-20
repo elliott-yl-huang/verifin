@@ -1,0 +1,12 @@
+{"q": "Why did Data Center revenue change in 2025-Q4 vs 2025-Q3?", "skill": "revenue-variance", "unit": "usd", "oracle": "SELECT SUM(CASE WHEN period BETWEEN '2025-10' AND '2025-12' THEN revenue ELSE -revenue END) FROM sales WHERE segment='Data Center' AND period BETWEEN '2025-07' AND '2025-12'"}
+{"q": "What drove the change in Gaming revenue from 2024 to 2025?", "skill": "revenue-variance", "unit": "usd", "oracle": "SELECT SUM(CASE WHEN period LIKE '2025-%' THEN revenue ELSE -revenue END) FROM sales WHERE segment='Gaming' AND period BETWEEN '2024-01' AND '2025-12'"}
+{"q": "Explain the revenue bridge for Q2 2025 compared to Q1 2025", "skill": "revenue-variance", "unit": "usd", "oracle": "SELECT SUM(CASE WHEN period BETWEEN '2025-04' AND '2025-06' THEN revenue ELSE -revenue END) FROM sales WHERE period BETWEEN '2025-01' AND '2025-06'"}
+{"q": "Why did Automotive revenue grow in 2025-Q3?", "skill": "revenue-variance", "unit": "usd", "oracle": "SELECT SUM(revenue) FROM sales WHERE segment='Automotive' AND period BETWEEN '2025-07' AND '2025-09'"}
+{"q": "How did 2025 revenue compare to budget?", "skill": "budget-vs-actual", "unit": "usd", "oracle": "SELECT (SELECT SUM(revenue) FROM sales WHERE period LIKE '2025-%') - (SELECT SUM(revenue_plan) FROM budget WHERE period LIKE '2025-%')"}
+{"q": "Did ProViz beat plan in 2025-Q4?", "skill": "budget-vs-actual", "unit": "usd", "oracle": "SELECT SUM(revenue_plan) FROM budget WHERE segment='ProViz' AND period BETWEEN '2025-10' AND '2025-12'"}
+{"q": "Forecast Data Center revenue for the next 3 months", "skill": "revenue-forecast", "unit": "pct", "oracle": "SELECT 90.0"}
+{"q": "What is the revenue outlook for the next 6 months?", "skill": "revenue-forecast", "unit": "pct", "oracle": "SELECT 90.0"}
+{"q": "Audit the journal entries for suspicious activity", "skill": "journal-entry-audit", "unit": "count", "oracle": "SELECT COUNT(*) FROM journal_entries"}
+{"q": "Any duplicate payments or fraud risk in 2025-Q2 journals?", "skill": "journal-entry-audit", "unit": "count", "oracle": "SELECT COUNT(*) FROM journal_entries WHERE period BETWEEN '2025-04' AND '2025-06'"}
+{"q": "Show opex by cost center for 2025-Q4", "skill": "opex-breakdown", "unit": "usd", "oracle": "SELECT SUM(amount) FROM opex WHERE period BETWEEN '2025-10' AND '2025-12'"}
+{"q": "What were R&D and G&A expenses in 2024?", "skill": "opex-breakdown", "unit": "usd", "oracle": "SELECT SUM(amount) FROM opex WHERE period LIKE '2024-%' AND cost_center='R&D'"}
